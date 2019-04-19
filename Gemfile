@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 ruby '2.6.0'
 
-gem "jekyll", "~> 3.8.0" # v4 releasing soon, might not be compatible with all plugins, https://github.com/jekyll/jekyll
+gem "jekyll", "~> 3.8.4" # v4 releasing soon, might not be compatible with all plugins, https://github.com/jekyll/jekyll
 
 gem "slim"
 gem "jekyll-slim", git: 'https://github.com/olery/jekyll-slim', ref: '48c27ea', group: :jekyll_plugins # https://github.com/slim-template/jekyll-slim/issues/4#issuecomment-357439366
