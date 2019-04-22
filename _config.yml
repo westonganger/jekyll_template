@@ -1,11 +1,30 @@
+deploy:
+  - rsync -aze ssh --delete ./ weston@westonganger.com:/usr/share/nginx/html/jekyll-template  
+
 # Build settings
 markdown: kramdown
 #theme: jekyll-theme-blackdoc
 plugins:
-  - jekyll-feed
-  - jekyll-paginate
+  - jekyll-slim
+  - jekyll-assets
+  - jekyll-manager
+  - jekyll-archives
+  #- jekyll-polyglot # translations
+  - jekyll-paginate-v2
   - jekyll-postfiles
-  - jekyll-category-pages
+  - jekyll-contentblocks
+  - jekyll-picture-tag
+  - jekyll-figure
+  - jekyll_inline_highlight
+  - liquid_pluralize
+  - liquid-humanize-number-filter
+  - jekyll-default-layout
+  - jekyll-optional-front-matter
+  - jekyll-liquify
+  - jekyll-firstimage
+  - jekyll-redirect-from
+  - jekyll-sitemap
+  - jekyll-seo-tag
 
 # DEV SERVER INFO
 # For technical reasons, this file is *NOT* reloaded automatically when you use 'bundle exec jekyll serve'. If you change this file, please restart the server process.
@@ -63,3 +82,73 @@ category_layout: "category_index.html"
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+### Jekyll-Assets config: https://github.com/envygeeks/jekyll-assets
+assets:
+  gzip: true
+
+### Jekyll-Polyglot config: https://github.com/untra/polyglot
+### languages: ["en", "sv", "de", "fr"]
+#default_lang: "en"
+#exclude_from_localization: ["javascript", "images", "css", "_assets"]
+#parallel_localization: true
+
+### Jekyll-Paginate-V2: https://github.com/sverrirs/jekyll-paginate-v2
+pagination:
+  enabled: true
+  debug: false # This can be enabled in the site config or only for individual pagination pages
+  extension: html
+  indexpage: 'index' # Optional, the default name of the index file for generated pages (e.g. 'index.html') Without file extension
+  collection: 'posts' # default document collection to paginate if nothing is specified
+  per_page: 10
+  permalink: '/page/:num/' # Pages are index.html inside this folder (default)
+  #permalink: '/page/:num.html' # Pages are simple html files 
+  #permalink: '/page/:num' # Pages are html files, linked jekyll extensionless permalink style.
+  title: ':title - page :num' # Optional the title format for the paginated pages (supports :title for original page title, :num for pagination page number, :max for total number of pages)
+  limit: 0 # Limit how many pagenated pages to create (default: 0, means all)
+  sort_field: 'date'
+  sort_reverse: true
+  tag: '' # Optional, the default tag to use, omit to disable
+  locale: '' # Optional, the default locale to use, omit to disable (depends on a field 'locale' to be specified in the posts)
+  trail: 
+    before: 2
+    after: 2
+
+jekyll-archives:
+  enabled: ['categories', 'tags'] # ['year','month','day','categories','tags']
+  layout: default-archive
+  layouts:
+    year: year-archive
+    month: month-archive
+    day: day-archive
+    category: category-archive
+    tag: tag-archive
+  permalinks:
+    year: '/:year/'
+    month: '/:year/:month/'
+    day: '/:year/:month/:day/'
+    tag: '/tag/:name/'
+    category: '/category/:name/'
+
+optional_front_matter:
+  enabled: true
+  remove_originals: true # remove original non-front-matter files from output
+
+titles_from_headings:
+  enabled:     true
+  strip_title: false # If your theme renders titles based on page.title, you can remove the title from the content by setting strip_title to prevent rendering it twice.
+  collections: false
+# defaults:
+#   - scope:
+#       path: some-path
+#       layout: some_layout
+#     values:
+#       strip_title: true
+
+### Jekyll-Sitemap config: https://github.com/jekyll/jekyll-sitemap
+sitemap: true
+# defaults:
+#   scope:
+#     path:            "assets/**/*.pdf"
+#   values:
+#     sitemap:         false
